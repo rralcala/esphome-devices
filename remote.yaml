@@ -1,0 +1,40 @@
+esphome:
+  name: ac-01
+
+esp32:
+  board: esp32doit-devkit-v1
+
+# Enable logging
+logger:
+
+api:
+    encryption:
+        key: !secret api_encryption_key
+        
+ota:
+  platform: esphome
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: dht
+    model: DHT22
+    pin: GPIO4
+    temperature:
+      id: living_temp
+      name: "Living Room Temperature"
+    humidity:
+      name: "Living Room Humidity"
+    update_interval: 60s
+
+#climate:
+#  - platform: coolix # adjust to match your AC unit!
+#    sensor: living_temp
+#    name: "Living Room AC"
+#    visual:
+#      temperature_step: 1
+

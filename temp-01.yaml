@@ -1,0 +1,26 @@
+substitutions:
+  hostname: "switch_01"
+  devicename: switch_01
+
+esphome:
+  name: switch_01
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+  level: INFO
+
+packages:
+  common_system: !include common_system.yaml
+  common_sensors: !include common_sensors.yaml
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+switch:
+  - platform: gpio
+    pin: GPIO0
+    name: "Switch"
