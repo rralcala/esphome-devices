@@ -1,0 +1,38 @@
+esphome:
+  name: living-mirador
+  friendly_name: living-mirador
+
+esp32:
+    board: nodemcu-32s
+    framework:
+      type: esp-idf
+
+logger:
+
+api:
+
+web_server:
+  port: 80 # integer value
+
+
+ota:
+  platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  ap:
+    ssid: "Living Room DHT Fallback"
+    password: "fallback-password"
+
+captive_portal:
+
+sensor:
+  - platform: dht
+    pin: GPIO2
+    temperature:
+      name: "Living Room Temperature"
+    humidity:
+      name: "Living Room Humidity"
+    update_interval: 60s
